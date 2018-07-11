@@ -25,6 +25,7 @@ export class RecipeListComponent implements OnInit {
   onSelect(recipeSecected: Recipe) {
     this.selectedRecipeProxy.emit(recipeSecected);
     console.log('Emitting @ recipe-list component ' + JSON.stringify(recipeSecected));
+    console.log('Emitting @ recipe-list component ' + JSON.stringify(recipeSecected));
   }
 
 }
