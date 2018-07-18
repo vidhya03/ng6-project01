@@ -7,15 +7,14 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-
   @Input() recipe: Recipe;
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.recipe =  new Recipe('Fish Grill', 'BBQ Fish with soya sauce ',
-    'https://media.istockphoto.com/photos/fish-grill-clamp-on-bbq-picture-id592027452');
+    this.recipe = new Recipe(
+      'Fish Grill',
+      'BBQ Fish with soya sauce ',
+      'https://media.istockphoto.com/photos/fish-grill-clamp-on-bbq-picture-id592027452'
+    );
   }
-
-
-
 }
