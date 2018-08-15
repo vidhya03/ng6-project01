@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
-import { Ingredient } from '../../shared/ingredient.model';
 import { RecipeService } from '../recipe.service';
+import { ActivatedRoute, Router, Data, Params } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -9,25 +9,23 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  @Input() recipe: Recipe;
-  constructor(private recipeService: RecipeService) {}
 
+  recipe: Recipe;
+  constructor(
+    private recipeService: RecipeService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.recipe = new Recipe(
-      'Fish Grill',
-      'BBQ Fish with soya sauce ',
-      'https://media.istockphoto.com/photos/fish-grill-clamp-on-bbq-picture-id592027452',
-      [
-        new Ingredient('quail', 1),
-        new Ingredient('garlic', 2),
-        new Ingredient('chilli', 2)
-      ]
-    );
+
+    this.route.params.subscribe((params: Params) => {
+      this.recipe = this.recipeService.getRecipeByIndex(+params['id']);
+      console.log(params['id']);
+      console.log(this.recipe);
+    });
+
   }
   onAddToShoppingList() {
-
-      this.recipeService.addIncredients(this.recipe.ingredients);
-
+    this.recipeService.addIncredients(this.recipe.ingredients);
   }
 }
