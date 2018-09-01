@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
 
 @Component({
@@ -8,18 +7,9 @@ import { RecipeService } from './recipe.service';
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
-  recipeSelected: Recipe;
   constructor(private recipeService: RecipeService) {}
 
   ngOnInit() {
-    this.recipeService.recipeSelected.subscribe((receipe: Recipe) => {
-      this.onEventRecipeSelect(receipe);
-    });
   }
 
-  onEventRecipeSelect(event: Recipe) {
-    // converting object to json
-    console.log('At onSelectRecipe' + JSON.stringify(event));
-    this.recipeSelected = event;
-  }
 }
